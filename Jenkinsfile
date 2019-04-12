@@ -5,8 +5,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'make'
-                archiveArtifacts artifacts: '**/*.*', fingerprint: true
+               sh "tar -czvf todo.tar.gz -C . ."
+          archiveArtifacts artifacts: "todo.tar.gz", fingerprint: true
+          script {
+            currentBuild.displayName = "0.1"
+          }
               
             }
         }
